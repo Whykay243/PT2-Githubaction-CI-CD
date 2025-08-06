@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cloud DevOps – Physicstutors.org</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <ul class="navbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="about.html">👤 About</a></li>
+      <li><a href="physics-tutoring.html">📘 Physics Tutoring</a></li>
+      <li><a href="cloud-devops.html" style="background-color: #0055aa; border-radius: 5px;">💻 Cloud DevOps</a></li>
+      <li><a href="docker-github.html">🐳 GitHub & DockerHub</a></li>
+      <li><a href="resume.html">📄 My Resume</a></li>
+      <li><a href="homeworkhelpsubmission.html">📝 Homework Help</a></li>
+      <li class="dropdown">
+        <a href="signup.html">✍️ Sign Up</a>
+        <div class="dropdown-content">
+          <a href="feedback.html">🗣️ Feedback</a>
+        </div>
+      </li>
+    </ul>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>💻 DevOps, Cloud & Containerization Projects</h1>
+      <p>From Windows Server labs to full-scale CI/CD pipelines with Terraform and Jenkins, here are some of the exciting projects I’ve built and documented.</p>
+    </section>
+
+    <section>
+      <h2>🖥️ Windows Server 2022 Lab</h2>
+      <p>
+        Built and managed a Windows Server 2022 lab using VirtualBox, featuring:
+      </p>
+      <ul>
+        <li>✅ Active Directory Domain Services</li>
+        <li>✅ DNS & DHCP Configuration</li>
+        <li>✅ Group Policy Management</li>
+        <li>✅ Static IP, Domain Join (Windows 11 & Linux)</li>
+        <li>✅ Screenshots & documentation included</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>☁️ Infrastructure as Code (IaC)</h2>
+      <p>Provisioned and automated infrastructure using:</p>
+      <ul>
+        <li>🔧 <strong>Terraform</strong> – Created complete AWS environments</li>
+        <li>📜 <strong>AWS CloudFormation</strong> – Declarative IaC templates</li>
+        <li>🛠️ <strong>Ansible</strong> – Configuration management for EC2s</li>
+      </ul>
+      <p>
+        I use <strong>GitHub Actions</strong> to trigger provisioning and push Ansible playbooks to live servers without needing SSH access, thanks to Ansible’s push-based model.
+      </p>
+    </section>
+
+    <section>
+      <h2>🚀 CI/CD Pipeline (Terraform + Jenkins + SonarQube)</h2>
+      <p>
+        Provisioned a full CI/CD pipeline on AWS EC2 using Terraform, which includes:
+      </p>
+      <ul>
+        <li>📦 Jenkins – Automating build & deployment of Java apps</li>
+        <li>📊 SonarQube – Code quality analysis with quality gates</li>
+        <li>🌐 Apache Tomcat – Java web app hosting</li>
+        <li>📁 Repo structure: <code>physicstutors/src/main/webapp</code></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🔁 CI/CD: GitHub Actions</h2>
+      <p>
+        Deployed <strong>Java and Node.js web applications</strong> using GitHub Actions for automated testing and deployment.
+      </p>
+      <ul>
+        <li>⏱️ Workflow triggers (push, PRs)</li>
+        <li>🔒 GitHub Secrets for credentials & keys</li>
+        <li>📂 Multi-stage pipelines</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🐳 Docker & Container Orchestration</h2>
+      <p>
+        Experienced with Docker and running containerized applications. Managed clusters using:
+      </p>
+      <ul>
+        <li>🐳 Docker – App packaging and containerization</li>
+        <li>☸️ Kubernetes – Container orchestration</li>
+        <li>🔁 AWS EKS – Managed Kubernetes clusters</li>
+        <li>📦 AWS ECS – Container Service with Fargate</li>
+      </ul>
+      <p>Screenshots and YAML configs available on request.</p>
+    </section>
+
+    <section>
+      <h2>🧪 Bonus: Physics Tutoring Website Project</h2>
+      <p>
+        Created a modern, responsive website for physics tutoring using HTML, CSS, and GitHub Pages deployment.
+        Combines education and DevOps branding in one unified platform.
+      </p>
+    </section>
+
+    <section>
+      <h2>📸 Documentation & Screenshots</h2>
+      <p>Every project is documented with screenshots, folder structures, and GitHub repositories.</p>
+    </section>
+    <section>
+      <h2>🎖️ Certifications</h2>
+      <p>Verified badge earned through hands-on DevOps practice:</p>
+      <div style="display: flex; justify-content: center; margin-top: 20px;">
+        <div data-iframe-width="300" data-iframe-height="270" 
+             data-share-badge-id="5db33dd2-1538-4820-bdba-e6868908a226" 
+             data-share-badge-host="https://www.credly.com">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Yinka Moses Ajibola | DevOps & Physics Tutoring</p>
+  </footer>
+
+  <!-- Load Credly badge script after DOM is ready -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var script = document.createElement("script");
+      script.src = "https://cdn.credly.com/assets/utilities/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>

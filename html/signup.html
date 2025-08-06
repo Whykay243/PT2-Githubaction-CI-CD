@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up – Physicstutors.org</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <ul class="navbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="about.html">👤 About</a></li>
+      <li><a href="physics-tutoring.html">📘 Physics Tutoring</a></li>
+      <li><a href="cloud-devops.html">💻 Cloud DevOps</a></li>
+      <li><a href="docker-github.html">🐳 GitHub & DockerHub</a></li>
+      <li><a href="resume.html">📄 My Resume</a></li>
+      <li><a href="homeworkhelpsubmission.html">📝 Homework Help</a></li>
+      <li class="dropdown">
+        <a href="signup.html" class="dropbtn">✍️ Sign Up</a>
+        <div class="dropdown-content">
+          <a href="feedback.html">🗣️ Feedback</a>
+        </div>
+      </li>
+    </ul>
+  </header>
+
+  <main class="content">
+    <h1 style="text-align:center;">Sign Up for Tutoring</h1>
+    <form id="signupForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="grade">Grade Level:</label>
+      <input type="text" id="grade" name="grade" required>
+
+      <label for="subject">Subject Help Needed:</label>
+      <textarea id="subject" name="subject" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+    <div id="status" style="margin-top: 1rem; font-weight: bold;"></div>
+  </main>
+
+  <footer>
+    <p>Contact: physicstutors.org | Phone: 857-399-7810</p>
+  </footer>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const status = document.getElementById('status');
+      status.style.color = 'blue';
+      status.textContent = '⏳ Sending your signup... Please wait.';
+
+      const data = {
+        action: 'signup', // ✅ REQUIRED by Lambda
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        grade: document.getElementById('grade').value.trim(),
+        subject: document.getElementById('subject').value.trim()
+      };
+
+      try {
+        const response = await fetch('https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Server error: ${errorText || response.status}`);
+        }
+
+        status.style.color = 'green';
+        status.textContent = '✅ Signup submitted successfully! Thank you.';
+        e.target.reset();
+      } catch (err) {
+        console.error(err);
+        status.style.color = 'red';
+        status.textContent = `❌ Error: ${err.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

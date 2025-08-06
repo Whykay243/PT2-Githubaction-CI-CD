@@ -1,0 +1,20 @@
+Physics-Tutors-Webapp-Files/
+├── .github/
+│   └── workflows/
+│       └── docker-deploy.yml       # ✅ GitHub Actions CI/CD workflow
+├── html/
+│   ├── index.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── feedback.html
+│   ├── about.html
+│   └── homeworkhelpsubmission.html # ✅ All your HTML pages
+├── styles/
+│   └── style.css                   # ✅ CSS styling
+├── images/
+│   └── ...                         # ✅ Images: logo, background, etc.
+├── pdf/
+│   └── sample.pdf                  # ✅ Static PDF file(s)
+├── favicon.ico                     # ✅ Favicon for the browser tab
+├── Dockerfile                      # ✅ NGINX-based Docker config
+└── README.md                       # ✅ Project description (optional)

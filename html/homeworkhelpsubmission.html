@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homework Help Submission – Physicstutors.org</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header>
+    <ul class="navbar">
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="about.html">👤 About</a></li>
+      <li><a href="physics-tutoring.html">📘 Physics Tutoring</a></li>
+      <li><a href="cloud-devops.html">💻 Cloud DevOps</a></li>
+      <li><a href="docker-github.html">🐳 GitHub & DockerHub</a></li>
+      <li><a href="resume.html">📄 My Resume</a></li>
+      <li><a href="homeworkhelpsubmission.html" class="active">📝 Homework Help</a></li>
+      <li class="dropdown">
+        <a href="signup.html">✍️ Sign Up</a>
+        <div class="dropdown-content">
+          <a href="feedback.html">🗣️ Feedback</a>
+        </div>
+      </li>
+    </ul>
+  </header>
+
+  <main class="content">
+    <h1 style="text-align:center;">Homework Help Submission</h1>
+    <form id="homeworkForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="grade">Grade Level:</label>
+      <input type="text" id="grade" name="grade" required />
+
+      <label for="description">Homework Description:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="file">Upload Homework File:</label>
+      <input type="file" id="file" name="file" required />
+
+      <button type="submit">Submit Homework</button>
+    </form>
+    <div id="status" style="margin-top: 1rem; font-weight: bold;"></div>
+  </main>
+
+  <footer>
+    <p>Contact: physicstutors.org | Phone: 857-399-7810</p>
+  </footer>
+
+  <script>
+    document.getElementById('homeworkForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const grade = document.getElementById('grade').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const fileInput = document.getElementById('file');
+      const file = fileInput.files[0];
+      const status = document.getElementById('status');
+
+      if (!file) {
+        status.style.color = "red";
+        status.textContent = "❌ Please select a file to upload.";
+        return;
+      }
+
+      status.style.color = "blue";
+      status.textContent = "⏳ Uploading... Please wait.";
+
+      try {
+        // Step 1: Get presigned URL and upload file to S3
+        const presignResponse = await fetch(`https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/getPresignedUrl?filename=${encodeURIComponent(file.name)}`);
+        if (!presignResponse.ok) throw new Error("Failed to get presigned URL.");
+        const presignedData = await presignResponse.json();
+
+        const formData = new FormData();
+        Object.entries(presignedData.fields).forEach(([key, value]) => {
+          formData.append(key, value);
+        });
+        formData.append("file", file);
+
+        const uploadResponse = await fetch(presignedData.url, {
+          method: "POST",
+          body: formData
+        });
+        if (!uploadResponse.ok) throw new Error("File upload failed.");
+
+        // Step 2: Log the submission metadata to backend
+        const fileUrl = `${presignedData.url}/${presignedData.fields.key}`;
+        const logResponse = await fetch("https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/homeworkhelpsubmission", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "homeworkhelpsubmission",
+            name,
+            email,
+            grade,
+            description,
+            filename: file.name,
+            fileUrl,
+            timestamp: new Date().toISOString()
+          })
+        });
+        if (!logResponse.ok) throw new Error("Failed to log submission details.");
+
+        status.style.color = "green";
+        status.textContent = "✅ Homework submitted successfully!";
+        document.getElementById('homeworkForm').reset();
+
+      } catch (err) {
+        console.error(err);
+        status.style.color = "red";
+        status.textContent = `❌ Error: ${err.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

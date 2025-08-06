@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yinka Moses Ajibola - GitHub & Docker Projects</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .projects-header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #003366;
+      font-size: 2.2rem;
+    }
+
+    .carousel-container {
+      max-width: 1000px;
+      margin: 0 auto 40px;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      background: linear-gradient(to right, #f7faff, #eaf3ff);
+      padding: 20px;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      animation: scroll 60s linear infinite;
+      width: fit-content;
+    }
+
+    .carousel-track img {
+      height: 320px;
+      width: auto;
+      border-radius: 10px;
+      border: 3px solid #dbefff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      cursor: pointer;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .repo-links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .repo-links a {
+      display: inline-block;
+      margin: 10px 15px;
+      padding: 12px 24px;
+      background-color: #003366;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .repo-links a:hover {
+      background-color: #0055aa;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #003366;
+      color: white;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="about.html">👤 About</a></li>
+        <li><a href="physics-tutoring.html">📘 Physics Tutoring</a></li>
+        <li><a href="cloud-devops.html">💻 Cloud DevOps</a></li>
+        <li><a href="docker-github.html" style="background-color: #0055aa; border-radius: 5px;">🐳 GitHub & DockerHub</a></li>
+        <li><a href="resume.html">📄 My Resume</a></li>
+        <li><a href="homeworkhelpsubmission.html">📝 Homework Help</a></li>
+        <li class="dropdown">
+        <a href="signup.html">✍️ Sign Up</a>
+        <div class="dropdown-content">
+          <a href="feedback.html">🗣️ Feedback</a>
+        </div>
+      </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="projects-header">My GitHub & Docker Projects</h1>
+
+    <section class="carousel-container">
+      <div class="carousel-track">
+        <a href="images/image11.jpg" target="_blank"><img src="images/image11.jpg" alt="Project Screenshot 1"></a>
+        <a href="images/image12.jpg" target="_blank"><img src="images/image12.jpg" alt="Project Screenshot 2"></a>
+        <a href="images/image13.jpg" target="_blank"><img src="images/image13.jpg" alt="Project Screenshot 3"></a>
+        <a href="images/image4.jpg" target="_blank"><img src="images/image4.jpg" alt="Project Screenshot 4"></a>
+        <a href="images/image5.jpg" target="_blank"><img src="images/image5.jpg" alt="Project Screenshot 5"></a>
+        <a href="images/image6.jpg" target="_blank"><img src="images/image6.jpg" alt="Project Screenshot 6"></a>
+        <a href="images/image7.jpg" target="_blank"><img src="images/image7.jpg" alt="Project Screenshot 7"></a>
+        <a href="images/image8.jpg" target="_blank"><img src="images/image8.jpg" alt="Project Screenshot 8"></a>
+        <a href="images/image9.jpg" target="_blank"><img src="images/image9.jpg" alt="Project Screenshot 9"></a>
+        <a href="images/image10.jpg" target="_blank"><img src="images/image10.jpg" alt="Project Screenshot 10"></a>
+        <!-- Loop begins -->
+        <a href="images/image11.jpg" target="_blank"><img src="images/image11.jpg" alt="Project Screenshot 1 Duplicate"></a>
+        <a href="images/image12.jpg" target="_blank"><img src="images/image12.jpg" alt="Project Screenshot 2 Duplicate"></a>
+        <a href="images/image13.jpg" target="_blank"><img src="images/image13.jpg" alt="Project Screenshot 3 Duplicate"></a>
+        <a href="images/image4.jpg" target="_blank"><img src="images/image4.jpg" alt="Project Screenshot 4 Duplicate"></a>
+        <a href="images/image5.jpg" target="_blank"><img src="images/image5.jpg" alt="Project Screenshot 5 Duplicate"></a>
+      </div>
+    </section>
+
+    <section class="repo-links">
+      <a href="https://github.com/Whykay243?tab=repositories" target="_blank">🔗 View GitHub Projects</a>
+      <a href="https://hub.docker.com/repositories/yajibola0011" target="_blank">🐳 View Docker Images</a>
+      <a href="https://www.linkedin.com/in/yinka-ajibola-290001220" target="_blank">💼 Connect on LinkedIn</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Contact: physicstutors.org | Email: yinka.ajibola0011@gmail.com | Phone: 857-399-7810</p>
+  </footer>
+</body>
+</html>
