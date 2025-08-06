@@ -1,6 +1,32 @@
 #!/bin/bash
+
+# Update package lists
 sudo apt update -y
+
+# Install curl if missing
 sudo apt install -y curl
+
+# Add Node.js 18 repository from NodeSource (LTS)
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+
+# Install Node.js and npm
 sudo apt install -y nodejs
-npm install @aws-sdk/client-lambda @aws-sdk/credential-provider-node uuid express cors
+
+# Create backend project folder if it doesn't exist
+if [ ! -d ~/feedback-backend ]; then
+  mkdir -p ~/feedback-backend
+fi
+
+# Navigate to your backend project folder
+cd ~/feedback-backend || { echo "Failed to enter backend folder"; exit 1; }
+
+# Initialize npm project if package.json doesn't exist
+if [ ! -f package.json ]; then
+  npm init -y
+fi
+
+# Install AWS SDK v3 clients for Lambda, DynamoDB, SNS
+# Also install express, cors (for handling requests), uuid (for unique IDs), body-parser
+npm install @aws-sdk/client-lambda @aws-sdk/client-dynamodb @aws-sdk/client-sns @aws-sdk/lib-dynamodb express cors uuid body-parser
+
+echo "Setup complete! You can now run 'node server.js' inside ~/feedback-backend"
