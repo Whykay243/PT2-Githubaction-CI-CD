@@ -79,7 +79,7 @@
         const presignResponse = await fetch(`http://54.208.17.95:3000/generatePresignedUrl?filename=${encodeURIComponent(file.name)}`);
         if (!presignResponse.ok) throw new Error("Failed to get presigned URL.");
         const presignedData = await presignResponse.json();
-        console.log("Presigned URL Response:", presignedData);  // Debugging line
+        console.log("Presigned URL Response:", presignedData);
 
         if (!presignedData || !presignedData.presignedUrl || !presignedData.fields) {
           throw new Error("Invalid presigned URL response.");
