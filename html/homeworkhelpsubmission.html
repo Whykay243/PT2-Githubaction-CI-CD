@@ -79,6 +79,11 @@
         const presignResponse = await fetch(`http://54.208.17.95:3000/generatePresignedUrl?filename=${encodeURIComponent(file.name)}`);
         if (!presignResponse.ok) throw new Error("Failed to get presigned URL.");
         const presignedData = await presignResponse.json();
+        console.log("Presigned URL Response:", presignedData);  // Debugging line
+
+        if (!presignedData || !presignedData.presignedUrl || !presignedData.fields) {
+          throw new Error("Invalid presigned URL response.");
+        }
 
         const formData = new FormData();
         Object.entries(presignedData.fields).forEach(([key, value]) => {
@@ -86,14 +91,14 @@
         });
         formData.append("file", file);
 
-        const uploadResponse = await fetch(presignedData.url, {
+        const uploadResponse = await fetch(presignedData.presignedUrl, {
           method: "POST",
           body: formData
         });
         if (!uploadResponse.ok) throw new Error("File upload failed.");
 
         // Step 2: Log the submission metadata to backend
-        const fileUrl = `${presignedData.url}/${presignedData.fields.key}`;
+        const fileUrl = `${presignedData.presignedUrl}/${presignedData.fields.key}`;
         const logResponse = await fetch("http://54.208.17.95:3000/homeworkhelpsubmission", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
