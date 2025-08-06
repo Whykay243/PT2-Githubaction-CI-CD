@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: yajibola0011/physicstutors-nginx:latest
+          tags: yajibola0011/pt2-nginx:latest
 
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -49,7 +49,7 @@ jobs:
             fi
 
             # Pull latest Docker image and restart container
-            docker pull yajibola0011/physicstutors-nginx:latest
+            docker pull yajibola0011/pt2-nginx:latest
             docker stop physicstutors-site || true
             docker rm physicstutors-site || true
             docker run -d -p 80:80 --name physicstutors-site yajibola0011/physicstutors-nginx:latest
