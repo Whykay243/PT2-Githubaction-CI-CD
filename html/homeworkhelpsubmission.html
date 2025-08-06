@@ -76,7 +76,7 @@
 
       try {
         // Step 1: Get presigned URL and upload file to S3
-        const presignResponse = await fetch(`https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/getPresignedUrl?filename=${encodeURIComponent(file.name)}`);
+        const presignResponse = await fetch(`http://54.208.17.95:3000/generatePresignedUrl?filename=${encodeURIComponent(file.name)}`);
         if (!presignResponse.ok) throw new Error("Failed to get presigned URL.");
         const presignedData = await presignResponse.json();
 
@@ -94,11 +94,10 @@
 
         // Step 2: Log the submission metadata to backend
         const fileUrl = `${presignedData.url}/${presignedData.fields.key}`;
-        const logResponse = await fetch("https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/homeworkhelpsubmission", {
+        const logResponse = await fetch("http://54.208.17.95:3000/homeworkhelpsubmission", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            action: "homeworkhelpsubmission",
             name,
             email,
             grade,
