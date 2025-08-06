@@ -28,7 +28,7 @@
 
   <main class="content">
     <h1 style="text-align:center;">Sign Up for Tutoring</h1>
-    <form id="signupForm">
+    <form id="signupForm" action="#" method="POST">
       <label for="name">Full Name:</label>
       <input type="text" id="name" name="name" required>
 
@@ -67,7 +67,7 @@
       };
 
       try {
-        const response = await fetch('https://qip7wx4z55.execute-api.us-east-1.amazonaws.com/production/signup', {
+        const response = await fetch('http://54.208.17.95:3000/feedback', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
