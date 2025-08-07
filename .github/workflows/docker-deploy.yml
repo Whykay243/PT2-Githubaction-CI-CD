@@ -51,6 +51,9 @@ jobs:
             # Add user to Docker group to allow Docker commands without sudo
             sudo usermod -aG docker $USER
 
+            # Restart session to apply Docker group changes immediately
+            newgrp docker
+
             # Ensure Docker service is running
             sudo systemctl start docker
 
