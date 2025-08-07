@@ -47,6 +47,9 @@ jobs:
             else
               echo "Docker already installed."
             fi
+            
+            # Add user to Docker group to allow Docker commands without sudo
+            sudo usermod -aG docker $USER
 
             # Ensure Docker service is running
             sudo systemctl start docker
